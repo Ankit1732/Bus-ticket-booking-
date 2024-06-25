@@ -1,71 +1,87 @@
-import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    USER_LOADED,
-    AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-    ACCOUNT_DELETED
-} from '../actions/types';
+import axios from 'axios';
+import { setAlert } from './alert'
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_PROFILE } from './types'
+import setAuthToken from '../utils/setAuthToken'
 
-const initialState = {
-    token: localStorage.getItem('token'),
-    isAuthenticated: null,
-    loading: true,
-    user: null
-};
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token)
+    }
 
-function authReducer(state = initialState, action) {
-    const { type, payload } = action;
+    try {
+        const res = await axios.get('/api/auth')
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data
+        })
+    } catch (err) {
+        // console.log(err)
+        dispatch({
+            type: AUTH_ERROR
+        })
+    }
 
-    switch (type) {
-        case USER_LOADED:
-            return {
-                ...state,
-                isAuthenticated: true,
-                loading: false,
-                user: payload
-            };
-        case REGISTER_SUCCESS:
-        case LOGIN_SUCCESS:
-            localStorage.setItem('token', payload.token)
-            return {
-                ...state,
-                ...payload,
-                isAuthenticated: true,
-                loading: false
-            };
-        case REGISTER_FAIL:
-        case AUTH_ERROR:
-        case LOGIN_FAIL:
-        case LOGOUT:
-            localStorage.removeItem('token')
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: false,
-                loading: false
-            }
-        case ACCOUNT_DELETED:
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: false,
-                loading: false,
-                user: null
-            };
-        // case LOGOUT:
-        //     return {
-        //         ...state,
-        //         token: null,
-        //         isAuthenticated: false,
-        //         loading: false,
-        //         user: null
-        //     };
-        default:
-            return state;
+}
+
+export const register = ({ name, email, password, contact, dob, gender }) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ name, email, password, contact, dob, gender });
+    try {
+        const res = await axios.post('/api/users', body, config)
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        });
+        dispatch(loadUser())
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+        dispatch({
+            type: REGISTER_FAIL
+        });
     }
 }
 
-export default authReducer;
+
+
+
+
+
+export const login = (email, password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ email, password });
+    try {
+        const res = await axios.post('/api/auth', body, config)
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        });
+
+        dispatch(loadUser())
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+        dispatch({
+            type: LOGIN_FAIL
+        });
+    }
+}
+
+export const logout = () => dispatch => {
+    dispatch({ type: CLEAR_PROFILE })
+    dispatch({ type: LOGOUT })
+}
