@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+# Bus-Booking-Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Bus ticket booking application made using MERN Stack (MongoDB, Express js, React js, Node js)
 
-## Available Scripts
+[Here](http://bookandfly.herokuapp.com/) is the link of Bus-Booking-Site.
+[Here](https://bus-business.herokuapp.com/) is the link of Business portal of this site for adding buses.
 
-In the project directory, you can run:
+The Bus ticket application is composed of the following Features:
 
-### `npm start`
+# Preview 🏞️ 🌅
+![Alt text](<Screenshot 2023-12-02 at 2.29.10 PM-1.png>)
+![Alt text](<Screenshot 2023-12-02 at 2.34.36 PM-2.png>)
+![Alt text](<Screenshot 2023-12-02 at 2.33.15 PM-1.png>) ![Alt text](<Screenshot 2023-12-02 at 2.33.38 PM-1.png>)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Demo Video](<40852031-8656-40c8-8aed-e01c5d0394cc.mp4>)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Front-End
 
-### `npm test`
+* Sign-In & Sign-Up Pages.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Uses Token based system, so only registered users can access the website  passport js.
 
-### `npm run build`
+* Password hashing using passport js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Has a profile page, which will display all information about the signed in user.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* List of cities for users to choose from (starting city & destination city). 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Getting list of bus's of different companies with various details.
 
-### `npm run eject`
+* Seat selection page has a very user friendly environment, which also generates dynamic forms for storing data's of passengers.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Has a Confirmation page, which gets a debit card data using react-credit-cards. This version of the application does not include handling the payment process. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Final page has a ticket displaying component, it displays all passenger data and also generates a random number as a transaction ID.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Back-End
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Uses Express js based application for the backend process.
 
-## Learn More
+* Uses MongoDB atlas for storing the collections.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Uses passport js for authenticating user and token based system.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Uses passport js for hashing the password before sending the data to the cloud.
 
-### Code Splitting
+* This version does not support dynamic seat data being stored from cloud.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+This project also demonstrates:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* a typcial React project layout structure
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Developed With
 
-### Advanced Configuration
+* [Visual Studio Code](https://code.visualstudio.com/) - A source code editor developed by Microsoft for Windows, Linux and macOS. It includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring
+* [Node.js](https://nodejs.org/en/) - Javascript runtime
+* [React](https://reactjs.org/) - A javascript library for building user interfaces
+* [Babel](https://babeljs.io/) - A transpiler for javascript
+* [Webpack](https://webpack.js.org/) - A module bundler
+* [SCSS](http://sass-lang.com/) - A css metalanguage
+* [Bootstrap 4](https://getbootstrap.com/) - Bootstrap is an open source toolkit for developing with HTML, CSS, and JS
+* [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+* [Express js](http://expressjs.com/) - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+* [MongoDB atlas](https://www.mongodb.com/cloud/atlas) - MongoDB Atlas is the global cloud database service for modern applications.
+* [Passport Js](http://www.passportjs.org/) - Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application.
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### `npm run build` fails to minify
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The following software is required to be installed on your system:
+
+* Node 8.x
+* Npm 3.x
+
+Type the following commands in the terminal to verify your node and npm versions
+
+```bash
+node -v
+npm -v
+```
+
+### Install
+
+Follow the following steps to get development environment running.
+
+* Clone _'Bus-Booking-Project.git'_ repository from GitHub
+
+  ```bash
+  git clone https://github.com/Baljeet9670/Bus-Booking-Project.git
+  ```
+
+   _OR USING SSH_
+
+  ```bash
+  git clone git@github.com:Baljeet9670/Bus-Booking-Project.git
+  ```
+
+* Install node modules
+
+   ```bash
+   cd MERN-BUS-APP
+   cd client
+   npm install
+   cd..
+   npm install
+   ```
+
+
+### Starting both front end and back end servers
+
+* Build application
+
+  This command will start the mongodb and the front end part.
+
+  ```bash
+  
+  npm run dev
+
+  ```
+
+
+---
+
+
