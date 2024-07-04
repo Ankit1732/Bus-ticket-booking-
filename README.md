@@ -93,13 +93,13 @@ Follow the following steps to get development environment running.
 * Clone _'Bus-Booking-Project.git'_ repository from GitHub
 
   ```bash
-  git clone https://github.com/Baljeet9670/Bus-Booking-Project.git
+  git clone https://github.com/Ankit1732/Bus-ticket-booking-
   ```
 
    _OR USING SSH_
 
   ```bash
-  git clone git@github.com:Baljeet9670/Bus-Booking-Project.git
+  git clone github.com/Ankit1732/Bus-ticket-booking-
   ```
 
 * Install node modules
